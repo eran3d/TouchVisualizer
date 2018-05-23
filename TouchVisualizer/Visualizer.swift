@@ -10,7 +10,7 @@ final public class Visualizer:NSObject {
     // MARK: - Public Variables
     static public let sharedInstance = Visualizer()
     fileprivate var enabled = false
-    fileprivate var config: Configuration!
+    fileprivate var config: TouchVisualizerConfiguration!
     fileprivate var touchViews = [TouchView]()
     fileprivate var previousLog = ""
     
@@ -64,7 +64,7 @@ extension Visualizer {
     
     // MARK: - Start and Stop functions
     
-    public class func start(_ config: Configuration = Configuration()) {
+    public class func start(_ config: TouchVisualizerConfiguration = TouchVisualizerConfiguration()) {
 		
 		if config.showsLog {
 			print("Visualizer start...")

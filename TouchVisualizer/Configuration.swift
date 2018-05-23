@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct Configuration {
+public struct TouchVisualizerConfiguration {
     private struct Constants {
         static let defaultColor = UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
     }
@@ -44,6 +44,11 @@ public struct Configuration {
     possible to read touch radius on it. Please test it on device
     */
     public var showsTouchRadius = false
+
+    /**
+    Animate touches
+    */
+    public var animated = false
 
     /**
     Shows log. This will affect performance. Make sure showing logs only in development environment
