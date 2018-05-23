@@ -83,6 +83,13 @@ final public class TouchView: UIImageView {
         if _config.showsTouchRadius {
             updateSize()
         }
+
+        if _config.animated {
+            UIView.animate(withDuration: 0.3) {
+                self.frame.size.width *= 1.5
+                self.frame.size.height *= 1.5
+            }
+        }
     }
     
     func endTouch() {

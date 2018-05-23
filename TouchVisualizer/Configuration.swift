@@ -46,6 +46,11 @@ public struct TouchVisualizerConfiguration {
     public var showsTouchRadius = false
 
     /**
+    Animate touches
+    */
+    public var animated = false
+
+    /**
     Shows log. This will affect performance. Make sure showing logs only in development environment
     */
     public var showsLog = false
