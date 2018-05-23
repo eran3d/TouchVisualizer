@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct Configuration {
+public struct TouchVisualizerConfiguration {
     private struct Constants {
         static let defaultColor = UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
     }
