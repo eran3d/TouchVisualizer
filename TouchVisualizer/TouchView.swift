@@ -10,17 +10,20 @@ final public class TouchView: UIImageView {
     // MARK: - Public Variables
     internal weak var touch: UITouch?
     private weak var timer: Timer?
-    private var _config: Configuration
+    private var _config: TouchVisualizerConfiguration
     private var previousRatio: CGFloat = 1.0
     private var startDate: Date?
     private var lastTimeString: String!
     
-    public var config: Configuration {
+    public var config: TouchVisualizerConfiguration {
         get { return _config }
         set (value) {
             _config = value
             image = self.config.image
             tintColor = self.config.color
+            layer.borderColor = self.config.borderColor?.cgColor
+            layer.borderWidth = self.config.borderWidth
+            layer.cornerRadius = self.frame.width / 2
             timerLabel.textColor = self.config.color
         }
     }
@@ -45,13 +48,16 @@ final public class TouchView: UIImageView {
     // MARK: - Object life cycle
     convenience init() {
         self.init(frame: .zero)
+
     }
     
     override init(frame: CGRect) {
-        _config = Configuration()
+        _config = TouchVisualizerConfiguration()
         super.init(frame: frame)
-        
+
         self.frame = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: _config.defaultSize)
+
+
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -64,6 +70,7 @@ final public class TouchView: UIImageView {
     
     // MARK: - Begin and end touching functions
     internal func beginTouch() {
+
         alpha = 1.0
         timerLabel.alpha = 0.0
         layer.transform = CATransform3DIdentity
@@ -82,6 +89,14 @@ final public class TouchView: UIImageView {
         
         if _config.showsTouchRadius {
             updateSize()
+        }
+
+        if _config.animated {
+            self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            UIView.animate(withDuration: 0.2    ) {
+                self.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }
+            self.transform = .identity
         }
     }
     
