@@ -8,12 +8,16 @@ import UIKit
 public struct TouchVisualizerConfiguration {
     private struct Constants {
         static let defaultColor = UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
+        static let defaultBorderColor = UIColor.clear
+        static let defaultBorderWidth = CGFloat(0)
     }
 
     /**
     Color of touch points
     */
     public var color: UIColor? = Constants.defaultColor
+    public var borderColor: UIColor? = Constants.defaultBorderColor
+    public var borderWidth: CGFloat = Constants.defaultBorderWidth
 
     // Image of touch points
     public var image: UIImage? = {

@@ -21,6 +21,9 @@ final public class TouchView: UIImageView {
             _config = value
             image = self.config.image
             tintColor = self.config.color
+            layer.borderColor = self.config.borderColor?.cgColor
+            layer.borderWidth = self.config.borderWidth
+            layer.cornerRadius = self.frame.width / 2
             timerLabel.textColor = self.config.color
         }
     }
@@ -45,13 +48,16 @@ final public class TouchView: UIImageView {
     // MARK: - Object life cycle
     convenience init() {
         self.init(frame: .zero)
+
     }
     
     override init(frame: CGRect) {
         _config = TouchVisualizerConfiguration()
         super.init(frame: frame)
-        
+
         self.frame = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: _config.defaultSize)
+
+
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -64,6 +70,7 @@ final public class TouchView: UIImageView {
     
     // MARK: - Begin and end touching functions
     internal func beginTouch() {
+
         alpha = 1.0
         timerLabel.alpha = 0.0
         layer.transform = CATransform3DIdentity
@@ -85,10 +92,11 @@ final public class TouchView: UIImageView {
         }
 
         if _config.animated {
-            UIView.animate(withDuration: 0.3) {
-                self.frame.size.width *= 1.5
-                self.frame.size.height *= 1.5
+            self.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            UIView.animate(withDuration: 0.2    ) {
+                self.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             }
+            self.transform = .identity
         }
     }
     
